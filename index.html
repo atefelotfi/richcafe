@@ -1,288 +1,181 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html lang="en">
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #2f363e;
+}
+
+.list {
+    position: relative;
+    width: 350px;
+    min-height: 500px;
+    padding: 50px;
+    background: #2f363e;
+    box-shadow: 25px 25px 75px rgba(0, 0, 0, 0.25),
+        10px 10px 70px rgba(0, 0, 0, 0.25),
+        inset 5px 5px 10px rgba(0, 0, 0, 0.5),
+        inset 5px 5px 20px rgba(255, 255, 255, 0.2),
+        inset -5px -5px 15px rgba(0, 0, 0, 0.75);
+    border-radius: 30px;
+}
+
+.list h3 {
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.list-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin: 20px 0;
+    cursor: pointer;
+}
+
+.list-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 45px;
+    height: 45px;
+    background: #3afa5c;
+    border-radius: 22.5px;
+    box-shadow: 5px 5px 7px rgba(0, 0, 0, 0.25),
+        inset 2px 2px 5px rgba(255, 255, 255, 0.5),
+        inset -3px -3px 5px rgba(0, 0, 0, 0.5);
+    transition: 0.5s;
+}
+
+.list-item:hover::before {
+    width: 100%;
+}
+
+.list-item .rank {
+    position: relative;
+    min-width: 45px;
+    height: 45px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.list-item .rank::before {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    background: #2f363e;
+    border-radius: 30px;
+    transform: scale(0);
+    transition: 0.5s;
+}
+
+.list-item:hover .rank::before {
+    transform: scale(1);
+}
+
+.list-item .rank span {
+    position: relative;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    transition: 0.5s;
+}
+
+.list-item .name {
+    position: relative;
+    line-height: 1.15rem;
+}
+
+.list-item .name h4 {
+    font-weight: 600;
+    color: #bcbcc0;
+    transition: 0.5s;
+}
+
+.list-item .name p {
+    font-size: 0.8rem;
+    font-weight: 400;
+    color: #95999d;
+    transition: 0.5s;
+}
+
+.list-item:hover .name h4,
+.list-item:hover .name p {
+    color: #fff;
+}  
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>صفحه منو کافی‌شاپ</title>
-  <style>
-    /* استایل برای پس‌زمینه و تنظیمات عمومی */
-    :root {
-      --bg: #000000;
-      --white: #ffffff;
-      --muted: #777777;
-      --card-bg: #1c1c1c;
-      --accent: #f5f5f5;
-      --primary: #ffffff;
-      --hover: #444444;
-      --radius: 12px;
-      --padding: 14px;
-      --gap: 12px;
-      --shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    html, body {
-      margin: 0;
-      padding: 0;
-      background-color: var(--bg);
-      color: var(--primary);
-      font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Arabic", "IRANSans", Tahoma;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      background-color: rgba(0, 0, 0, 0.8);
-      backdrop-filter: saturate(180%) blur(5px);
-      padding: 12px 16px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
-      z-index: 10;
-      display: flex;
-      justify-content: center;
-      flex-direction: column;
-    }
-
-    .logo {
-      display: block;
-      text-align: center;
-      font-size: 2rem;
-      color: var(--primary);
-      margin-bottom: 20px;
-    }
-
-    .logo img {
-      max-width: 100%;
-      height: auto;
-    }
-
-    .tools {
-      display: flex;
-      gap: 12px;
-      width: 100%;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 10px;
-    }
-
-    .tools select {
-      background-color: var(--card-bg);
-      border: 1px solid var(--muted);
-      border-radius: var(--radius);
-      padding: 8px 12px;
-      color: var(--primary);
-      outline: none;
-      min-width: 180px;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-      margin-top: 20px;
-    }
-
-    @media(min-width: 600px) {
-      .grid {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    @media(min-width: 800px) {
-      .grid {
-        grid-template-columns: 1fr 1fr 1fr;
-      }
-    }
-
-    .card {
-      background-color: var(--card-bg);
-      border-radius: var(--radius);
-      padding: var(--padding);
-      box-shadow: var(--shadow);
-      display: flex;
-      gap: 16px;
-      align-items: center;
-      transition: background-color 0.3s ease;
-    }
-
-    .card:hover {
-      background-color: var(--hover);
-    }
-
-    .thumb {
-      width: 80px;
-      height: 80px;
-      border-radius: 12px;
-      object-fit: cover;
-      background-color: var(--primary);
-    }
-
-    .title {
-      font-weight: bold;
-      font-size: 1.2rem;
-    }
-
-    .row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      margin-top: 8px;
-    }
-
-    .price {
-      font-size: 1.2rem;
-      color: var(--primary);
-    }
-
-    .cat {
-      display: none; /* Hide category name next to the product */
-    }
-
-    .foot {
-      margin-top: 32px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      border-top: 1px solid var(--muted);
-      padding-top: 14px;
-    }
-
-    .btn {
-      background-color: var(--primary);
-      border: none;
-      padding: 10px 16px;
-      color: var(--bg);
-      border-radius: var(--radius);
-      cursor: pointer;
-      font-size: 1rem;
-      transition: background-color 0.3s;
-    }
-
-    .btn:hover {
-      background-color: var(--hover);
-    }
-
-    .tiny {
-      font-size: 0.9rem;
-      color: var(--muted);
-    }
-
-    .hidden {
-      display: none;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>arashgholami_ir</title>
 </head>
 <body>
-
-<header>
-  <div class="logo" id="logo">
-    <img src="https://github.com/atefelotfi/richcafe/raw/refs/heads/main/logo-cafe" alt="کافه خوشمزه" />
-  </div>
-  
-  <!-- فیلد دسته‌ها -->
-  <div class="tools">
-    <select id="category">
-      <option value="all">همه دسته‌ها</option>
-      <option value="بار گرم">بار گرم</option>
-      <option value="بار سرد">بار سرد</option>
-      <option value="چای و دمنوش">چای و دمنوش</option>
-      <option value="میلک شیک">میلک شیک</option>
-      <option value="موکتل و اسموتی">موکتل و اسموتی</option>
-    </select>
-  </div>
-</header>
-
-<!-- صفحه منوی محصولات -->
-<div id="grid" class="grid"></div>
-
-<script>
-  const MENU_ITEMS = [
-    { id: 1, name: "اسپرسو", price: 80000, category: "بار گرم", img: "https://picsum.photos/200" },
-    { id: 2, name: "آمریکانو", price: 100000, category: "بار گرم", img: "https://picsum.photos/200" },
-    { id: 3, name: "کاپوچینو", price: 130000, category: "بار گرم", img: "https://picsum.photos/200" },
-    { id: 4, name: "لته", price: 140000, category: "بار گرم", img: "https://picsum.photos/200" },
-    { id: 5, name: "لته ماکیاتو (فندق, کارامل ,وانیل ,آیریش, شکلات)", price: 155000, category: "بار گرم", img: "https://picsum.photos/200" },
-    // اضافه کردن آیتم‌های دیگر
-  ];
-
-  const gridEl = document.getElementById('grid');
-  const catEl = document.getElementById('category');
-  const logoEl = document.getElementById('logo');
-
-  // دسته‌بندی‌ها
-  const categories = Array.from(new Set(MENU_ITEMS.map(i => i.category))).sort();
-  categories.forEach(c => {
-    const o = document.createElement('option');
-    o.value = c;
-    o.textContent = c;
-    catEl.appendChild(o);
-  });
-
-  function render(items) {
-    gridEl.innerHTML = '';
-    if (!items.length) {
-      const p = document.createElement('p');
-      p.className = 'muted';
-      p.textContent = 'آیتمی یافت نشد.';
-      gridEl.appendChild(p);
-      return;
-    }
-    items.forEach(i => {
-      const card = document.createElement('div');
-      card.className = 'card';
-      const img = document.createElement('img');
-      img.className = 'thumb';
-      img.loading = 'lazy';
-      img.alt = i.name;
-      img.src = i.img;
-      const block = document.createElement('div');
-      const title = document.createElement('div');
-      title.className = 'title';
-      title.textContent = i.name;
-      const row = document.createElement('div');
-      row.className = 'row';
-      const price = document.createElement('div');
-      price.className = 'price';
-      price.textContent = formatPrice(i.price);
-      row.append(price);
-      block.append(title, row);
-      card.append(img, block);
-      gridEl.appendChild(card);
-    });
-  }
-
-  function applyFilter() {
-    const c = catEl.value;
-    const filtered = MENU_ITEMS.filter(i => {
-      return c === 'all' || i.category === c;
-    });
-
-    // مخفی کردن لوگو بعد از انتخاب دسته
-    if (c !== 'all') {
-      logoEl.style.display = 'none'; // مخفی کردن لوگو
-    } else {
-      logoEl.style.display = 'block'; // نشان دادن لوگو در صورتی که همه دسته‌ها انتخاب شده باشد
-    }
-
-    render(filtered);
-  }
-
-  function formatPrice(num) {
-    if (typeof num !== 'number') return '';
-    return num.toLocaleString('fa-IR') + ' تومان';
-  }
-
-  catEl.addEventListener('change', applyFilter);
-
-  render(MENU_ITEMS); // نمایش تمام محصولات ابتدا
-</script>
-
+    <div class="container">
+        <div class="list">
+            <h3>arashgholami_ir</h3>
+            <div class="list-item">
+                <div class="rank"><span>1</span></div>
+                <div class="name">
+                    <h4>arashgholami_ir</h4>
+                    <p>Digital Artist</p>
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="rank"><span>2</span></div>
+                <div class="name">
+                    <h4>arashgholami_ir</h4>
+                    <p>Musician</p>
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="rank"><span>3</span></div>
+                <div class="name">
+                    <h4>arashgholami_ir</h4>
+                    <p>Film Maker</p>
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="rank"><span>4</span></div>
+                <div class="name">
+                    <h4>arashgholami_ir</h4>
+                    <p>UI/UX Designer</p>
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="rank"><span>5</span></div>
+                <div class="name">
+                    <h4>arashgholami_ir</h4>
+                    <p>Director</p>
+                </div>
+            </div>
+            <div class="list-item">
+                <div class="rank"><span>6</span></div>
+                <div class="name">
+                    <h4>arashgholami_ir</h4>
+                    <p>Architecture</p>
+                </div>
+            </div>
+        </div>
+    </div>  
+    
 </body>
 </html>
