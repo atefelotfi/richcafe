@@ -200,6 +200,20 @@
   </div>
 </header>
 
+<main class="wrap">
+  <p class="muted">برای مشاهده‌ی سریع، از فیلتر دسته‌ها استفاده کنید.</p>
+  <div id="grid" class="grid"></div>
+
+  <div class="foot">
+    <span class="tiny">* ممکن است قیمت‌ها بدون اطلاع قبلی تغییر کند.</span>
+    <div>
+      <button class="btn" id="printBtn">چاپ / PDF</button>
+      <button class="btn" id="toTop">بازگشت به بالا</button>
+    </div>
+  </div>
+  <p class="tiny" id="updated"></p>
+</main>
+
 <script>
   const MENU_ITEMS = [
     { id:1, name:"اسپرسو", price: 80000, category:"بار گرم", img:"https://picsum.photos/200" },
@@ -212,6 +226,7 @@
 
   const gridEl = document.getElementById('grid');
   const catEl = document.getElementById('category');
+  const logoEl = document.getElementById('logo');
   const printBtn = document.getElementById('printBtn');
   const toTopBtn = document.getElementById('toTop');
 
@@ -270,7 +285,17 @@
     return num.toLocaleString('fa-IR') + ' تومان';
   }
 
-  catEl.addEventListener('change', applyFilter);
+  catEl.addEventListener('change', (e) => {
+    if (e.target.value === 'all') {
+      logoEl.style.display = 'block'; // نمایش لوگو
+      gridEl.style.display = 'none';  // پنهان کردن محصولات
+    } else {
+      logoEl.style.display = 'none'; // پنهان کردن لوگو
+      gridEl.style.display = 'grid'; // نمایش محصولات
+    }
+    applyFilter();
+  });
+
   printBtn.addEventListener('click', () => window.print());
   toTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
