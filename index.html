@@ -43,7 +43,6 @@
       z-index: 10;
       display: flex;
       justify-content: center;
-      align-items: center;
       flex-direction: column;
     }
 
@@ -67,6 +66,7 @@
       width: 100%;
       justify-content: center;
       flex-wrap: wrap;
+      margin-top: 10px;
     }
 
     .tools input,
@@ -77,7 +77,7 @@
       padding: 8px 12px;
       color: var(--primary);
       outline: none;
-      min-width: 150px;
+      min-width: 180px;
       font-size: 1rem;
     }
 
@@ -105,6 +105,7 @@
       color: var(--primary);
     }
 
+    /* نمایش گرید برای اندازه‌های بزرگتر */
     @media(min-width: 600px) {
       .grid {
         grid-template-columns: 1fr 1fr;
