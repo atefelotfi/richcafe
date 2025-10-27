@@ -200,25 +200,21 @@
   </div>
 </header>
 
-<main class="wrap">
-  <p class="tiny" id="updated"></p>
-</main>
+<div id="grid" class="grid"></div>
 
 <script>
   const MENU_ITEMS = [
-    { id:1, name:"اسپرسو", price: 80000, category:"بار گرم", img:"https://picsum.photos/200" },
-    { id:2, name:"آمریکانو", price: 100000, category:"بار گرم", img:"https://picsum.photos/200" },
-    { id:3, name:"کاپوچینو", price: 130000, category:"بار گرم", img:"https://picsum.photos/200" },
-    { id:4, name:"لته", price: 140000, category:"بار گرم", img:"https://picsum.photos/200" },
-    { id:5, name:"لته ماکیاتو (فندق, کارامل ,وانیل ,آیریش, شکلات)", price: 155000, category:"بار گرم", img:"https://picsum.photos/200" },
+    { id: 1, name: "اسپرسو", price: 80000, category: "بار گرم", img: "https://picsum.photos/200" },
+    { id: 2, name: "آمریکانو", price: 100000, category: "بار گرم", img: "https://picsum.photos/200" },
+    { id: 3, name: "کاپوچینو", price: 130000, category: "بار گرم", img: "https://picsum.photos/200" },
+    { id: 4, name: "لته", price: 140000, category: "بار گرم", img: "https://picsum.photos/200" },
+    { id: 5, name: "لته ماکیاتو (فندق, کارامل ,وانیل ,آیریش, شکلات)", price: 155000, category: "بار گرم", img: "https://picsum.photos/200" },
     // باقی آیتم‌ها...
   ];
 
   const gridEl = document.getElementById('grid');
   const catEl = document.getElementById('category');
-  const logoEl = document.getElementById('logo');
-  const printBtn = document.getElementById('printBtn');
-  const toTopBtn = document.getElementById('toTop');
+  const logoEl = document.getElementById('logo'); // اینجا لوگو را انتخاب می‌کنیم
 
   // دسته‌بندی‌ها
   const categories = Array.from(new Set(MENU_ITEMS.map(i => i.category))).sort();
@@ -267,6 +263,14 @@
     const filtered = MENU_ITEMS.filter(i => {
       return c === 'all' || i.category === c;
     });
+
+    // مخفی کردن لوگو وقتی که دسته انتخاب می‌شود
+    if (c !== 'all') {
+      logoEl.style.display = 'none'; // مخفی کردن لوگو
+    } else {
+      logoEl.style.display = 'block'; // نشان دادن لوگو در صورتی که همه دسته‌ها انتخاب شده باشد
+    }
+
     render(filtered);
   }
 
@@ -275,22 +279,7 @@
     return num.toLocaleString('fa-IR') + ' تومان';
   }
 
-  catEl.addEventListener('change', (e) => {
-    if (e.target.value === 'all') {
-      logoEl.style.display = 'block'; // نمایش لوگو
-      gridEl.style.display = 'none';  // پنهان کردن محصولات
-    } else {
-      logoEl.style.display = 'none'; // پنهان کردن لوگو
-      gridEl.style.display = 'grid'; // نمایش محصولات
-    }
-    applyFilter();
-  });
-
-  printBtn.addEventListener('click', () => window.print());
-  toTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-  const d = new Date();
-  document.getElementById('updated').textContent = 'آخرین به‌روزرسانی: ' + d.toLocaleDateString('fa-IR') + '، ' + d.toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit' });
+  catEl.addEventListener('change', applyFilter);
 
   render(MENU_ITEMS);
 </script>
