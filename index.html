@@ -103,6 +103,12 @@
       text-align: center;
       font-size: 2rem;
       color: var(--primary);
+      margin-bottom: 20px;
+    }
+
+    .logo img {
+      max-width: 100%;
+      height: auto;
     }
 
     /* نمایش گرید برای اندازه‌های بزرگتر */
@@ -202,9 +208,10 @@
 
 <header>
   <div class="head">
-    <div class="brand">منو کافی‌شاپ</div>
+    <div class="logo" id="logo">
+      <img src="https://yourimagepath.com/yourlogo.jpg" alt="لوگوی کافه شما" />
+    </div>
     <div class="tools">
-      <input id="search" type="search" placeholder="جستجو: قهوه، کیک، موکا..." />
       <select id="category">
         <option value="all">همه دسته‌ها</option>
         <option value="بار گرم">بار گرم</option>
@@ -218,12 +225,7 @@
 </header>
 
 <main class="wrap">
-  <!-- Initial Logo Display -->
-  <div class="logo" id="logo">
-    <p>لوگوی کافه شما</p>
-  </div>
-
-  <p class="muted">برای مشاهده‌ی سریع، از جستجو یا فیلتر دسته‌ها استفاده کنید.</p>
+  <p class="muted">برای مشاهده‌ی سریع، از فیلتر دسته‌ها استفاده کنید.</p>
   <div id="grid" class="grid"></div>
 
   <div class="foot">
@@ -247,12 +249,9 @@
   ];
 
   const gridEl = document.getElementById('grid');
-  const searchEl = document.getElementById('search');
   const catEl = document.getElementById('category');
-  const updatedEl = document.getElementById('updated');
   const printBtn = document.getElementById('printBtn');
   const toTopBtn = document.getElementById('toTop');
-  const logoEl = document.getElementById('logo');
 
   // دسته‌بندی‌ها
   const categories = Array.from(new Set(MENU_ITEMS.map(i => i.category))).sort();
@@ -297,12 +296,9 @@
   }
 
   function applyFilter() {
-    const q = (searchEl.value || '').trim();
     const c = catEl.value;
     const filtered = MENU_ITEMS.filter(i => {
-      const inCat = c === 'all' || i.category === c;
-      const inTxt = !q || [i.name, i.category].filter(Boolean).some(t => t.includes(q));
-      return inCat && inTxt;
+      return c === 'all' || i.category === c;
     });
     render(filtered);
   }
@@ -312,17 +308,12 @@
     return num.toLocaleString('fa-IR') + ' تومان';
   }
 
-  searchEl.addEventListener('input', applyFilter);
-  catEl.addEventListener('change', () => {
-    logoEl.style.display = 'none'; // Hide logo when category is selected
-    gridEl.style.display = 'grid'; // Show products
-    applyFilter();
-  });
+  catEl.addEventListener('change', applyFilter);
   printBtn.addEventListener('click', () => window.print());
   toTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
   const d = new Date();
-  updatedEl.textContent = 'آخرین به‌روزرسانی: ' + d.toLocaleDateString('fa-IR') + '، ' + d.toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit' });
+  document.getElementById('updated').textContent = 'آخرین به‌روزرسانی: ' + d.toLocaleDateString('fa-IR') + '، ' + d.toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit' });
 
   render(MENU_ITEMS);
 </script>
