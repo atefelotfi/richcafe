@@ -1,10 +1,11 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="color-scheme" content="light only" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>صفحه منو کافی‌شاپ</title>
   <style>
+    /* استایل برای پس‌زمینه و تنظیمات عمومی */
     :root {
       --bg: #000000;
       --white: #ffffff;
@@ -84,7 +85,6 @@
       grid-template-columns: 1fr;
       gap: 16px;
       margin-top: 20px;
-      display: block; /* Make sure grid is visible */
     }
 
     @media(min-width: 600px) {
@@ -183,11 +183,10 @@
 
 <header>
   <div class="logo" id="logo">
-    <!-- در اینجا لوگو قرار می‌گیرد -->
-    <img src="https://github.com/atefelotfi/richcafe/raw/refs/heads/main/logo-cafe" />
+    <img src="https://github.com/atefelotfi/richcafe/raw/refs/heads/main/logo-cafe" alt="کافه خوشمزه" />
   </div>
   
-  <!-- فقط فیلد دسته‌ها نمایش داده می‌شود -->
+  <!-- فیلد دسته‌ها -->
   <div class="tools">
     <select id="category">
       <option value="all">همه دسته‌ها</option>
@@ -200,7 +199,8 @@
   </div>
 </header>
 
-<div id="grid" class="grid"></div> <!-- نمایندگی برای محصولات -->
+<!-- صفحه منوی محصولات -->
+<div id="grid" class="grid"></div>
 
 <script>
   const MENU_ITEMS = [
@@ -209,12 +209,12 @@
     { id: 3, name: "کاپوچینو", price: 130000, category: "بار گرم", img: "https://picsum.photos/200" },
     { id: 4, name: "لته", price: 140000, category: "بار گرم", img: "https://picsum.photos/200" },
     { id: 5, name: "لته ماکیاتو (فندق, کارامل ,وانیل ,آیریش, شکلات)", price: 155000, category: "بار گرم", img: "https://picsum.photos/200" },
-    // سایر آیتم‌ها...
+    // اضافه کردن آیتم‌های دیگر
   ];
 
   const gridEl = document.getElementById('grid');
   const catEl = document.getElementById('category');
-  const logoEl = document.getElementById('logo'); // انتخاب لوگو
+  const logoEl = document.getElementById('logo');
 
   // دسته‌بندی‌ها
   const categories = Array.from(new Set(MENU_ITEMS.map(i => i.category))).sort();
@@ -226,7 +226,7 @@
   });
 
   function render(items) {
-    gridEl.innerHTML = ''; // ابتدا محتوا را پاک می‌کنیم
+    gridEl.innerHTML = '';
     if (!items.length) {
       const p = document.createElement('p');
       p.className = 'muted';
@@ -264,14 +264,14 @@
       return c === 'all' || i.category === c;
     });
 
-    // مخفی کردن لوگو وقتی که دسته انتخاب می‌شود
+    // مخفی کردن لوگو بعد از انتخاب دسته
     if (c !== 'all') {
       logoEl.style.display = 'none'; // مخفی کردن لوگو
     } else {
       logoEl.style.display = 'block'; // نشان دادن لوگو در صورتی که همه دسته‌ها انتخاب شده باشد
     }
 
-    render(filtered); // نمایش محصولات
+    render(filtered);
   }
 
   function formatPrice(num) {
@@ -283,5 +283,6 @@
 
   render(MENU_ITEMS); // نمایش تمام محصولات ابتدا
 </script>
+
 </body>
 </html>
