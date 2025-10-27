@@ -84,7 +84,7 @@
       grid-template-columns: 1fr;
       gap: 16px;
       margin-top: 20px;
-      display: none; /* Initially hide the grid */
+      display: block; /* Make sure grid is visible */
     }
 
     @media(min-width: 600px) {
@@ -200,7 +200,7 @@
   </div>
 </header>
 
-<div id="grid" class="grid"></div>
+<div id="grid" class="grid"></div> <!-- نمایندگی برای محصولات -->
 
 <script>
   const MENU_ITEMS = [
@@ -209,12 +209,12 @@
     { id: 3, name: "کاپوچینو", price: 130000, category: "بار گرم", img: "https://picsum.photos/200" },
     { id: 4, name: "لته", price: 140000, category: "بار گرم", img: "https://picsum.photos/200" },
     { id: 5, name: "لته ماکیاتو (فندق, کارامل ,وانیل ,آیریش, شکلات)", price: 155000, category: "بار گرم", img: "https://picsum.photos/200" },
-    // باقی آیتم‌ها...
+    // سایر آیتم‌ها...
   ];
 
   const gridEl = document.getElementById('grid');
   const catEl = document.getElementById('category');
-  const logoEl = document.getElementById('logo'); // اینجا لوگو را انتخاب می‌کنیم
+  const logoEl = document.getElementById('logo'); // انتخاب لوگو
 
   // دسته‌بندی‌ها
   const categories = Array.from(new Set(MENU_ITEMS.map(i => i.category))).sort();
@@ -226,7 +226,7 @@
   });
 
   function render(items) {
-    gridEl.innerHTML = '';
+    gridEl.innerHTML = ''; // ابتدا محتوا را پاک می‌کنیم
     if (!items.length) {
       const p = document.createElement('p');
       p.className = 'muted';
@@ -271,7 +271,7 @@
       logoEl.style.display = 'block'; // نشان دادن لوگو در صورتی که همه دسته‌ها انتخاب شده باشد
     }
 
-    render(filtered);
+    render(filtered); // نمایش محصولات
   }
 
   function formatPrice(num) {
@@ -281,7 +281,7 @@
 
   catEl.addEventListener('change', applyFilter);
 
-  render(MENU_ITEMS);
+  render(MENU_ITEMS); // نمایش تمام محصولات ابتدا
 </script>
 </body>
 </html>
