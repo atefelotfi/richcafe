@@ -3,7 +3,6 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>منو کافی‌شاپ</title>
   <meta name="color-scheme" content="light only" />
   <style>
     :root {
@@ -46,58 +45,6 @@
       flex-direction: column;
     }
 
-    .head {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
-    }
-
-    .brand {
-      font-weight: bold;
-      font-size: 2rem;
-      color: var(--primary);
-      letter-spacing: 1px;
-    }
-
-    .tools {
-      display: flex;
-      gap: 12px;
-      width: 100%;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 10px;
-    }
-
-    .tools input,
-    .tools select {
-      background-color: var(--card-bg);
-      border: 1px solid var(--muted);
-      border-radius: var(--radius);
-      padding: 8px 12px;
-      color: var(--primary);
-      outline: none;
-      min-width: 180px;
-      font-size: 1rem;
-    }
-
-    .tools select {
-      cursor: pointer;
-    }
-
-    .muted {
-      color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 16px;
-      margin-top: 20px;
-      display: none; /* Initially hide the grid */
-    }
-
     .logo {
       display: block;
       text-align: center;
@@ -111,7 +58,35 @@
       height: auto;
     }
 
-    /* نمایش گرید برای اندازه‌های بزرگتر */
+    .tools {
+      display: flex;
+      gap: 12px;
+      width: 100%;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .tools select {
+      background-color: var(--card-bg);
+      border: 1px solid var(--muted);
+      border-radius: var(--radius);
+      padding: 8px 12px;
+      color: var(--primary);
+      outline: none;
+      min-width: 180px;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: 20px;
+      display: none; /* Initially hide the grid */
+    }
+
     @media(min-width: 600px) {
       .grid {
         grid-template-columns: 1fr 1fr;
@@ -207,20 +182,21 @@
 <body>
 
 <header>
-  <div class="head">
-    <div class="logo" id="logo">
-      <img src="https://yourimagepath.com/yourlogo.jpg" alt="لوگوی کافه شما" />
-    </div>
-    <div class="tools">
-      <select id="category">
-        <option value="all">همه دسته‌ها</option>
-        <option value="بار گرم">بار گرم</option>
-        <option value="بار سرد">بار سرد</option>
-        <option value="چای و دمنوش">چای و دمنوش</option>
-        <option value="میلک شیک">میلک شیک</option>
-        <option value="موکتل و اسموتی">موکتل و اسموتی</option>
-      </select>
-    </div>
+  <div class="logo" id="logo">
+    <!-- در اینجا لوگو قرار می‌گیرد -->
+    <img src="https://yourimagepath.com/yourlogo.jpg" alt="لوگوی کافه شما" />
+  </div>
+  
+  <!-- فقط فیلد دسته‌ها نمایش داده می‌شود -->
+  <div class="tools">
+    <select id="category">
+      <option value="all">همه دسته‌ها</option>
+      <option value="بار گرم">بار گرم</option>
+      <option value="بار سرد">بار سرد</option>
+      <option value="چای و دمنوش">چای و دمنوش</option>
+      <option value="میلک شیک">میلک شیک</option>
+      <option value="موکتل و اسموتی">موکتل و اسموتی</option>
+    </select>
   </div>
 </header>
 
