@@ -41,17 +41,20 @@
       padding: 12px 16px;
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
       z-index: 10;
+      display: flex;
+      justify-content: center;
     }
 
     .head {
       display: flex;
-      justify-content: space-between;
+      justify-content: center;
       align-items: center;
+      width: 100%;
     }
 
     .brand {
       font-weight: bold;
-      font-size: 1.5rem;
+      font-size: 2rem;
       color: var(--primary);
       letter-spacing: 1px;
     }
@@ -87,6 +90,14 @@
       grid-template-columns: 1fr;
       gap: 16px;
       margin-top: 20px;
+      display: none; /* Initially hide the grid */
+    }
+
+    .logo {
+      display: block;
+      text-align: center;
+      font-size: 2rem;
+      color: var(--primary);
     }
 
     @media(min-width: 600px) {
@@ -137,12 +148,7 @@
     }
 
     .cat {
-      font-size: 0.9rem;
-      color: var(--muted);
-      background-color: var(--bg);
-      padding: 4px 8px;
-      border-radius: 999px;
-      border: 1px solid var(--muted);
+      display: none; /* Hide category name next to the product */
     }
 
     .foot {
@@ -200,8 +206,14 @@
 </header>
 
 <main class="wrap">
+  <!-- Initial Logo Display -->
+  <div class="logo" id="logo">
+    <p>لوگوی کافه شما</p>
+  </div>
+
   <p class="muted">برای مشاهده‌ی سریع، از جستجو یا فیلتر دسته‌ها استفاده کنید.</p>
   <div id="grid" class="grid"></div>
+
   <div class="foot">
     <span class="tiny">* ممکن است قیمت‌ها بدون اطلاع قبلی تغییر کند.</span>
     <div>
@@ -219,15 +231,7 @@
     { id:3, name:"کاپوچینو", price: 130000, category:"بار گرم", img:"https://picsum.photos/200" },
     { id:4, name:"لته", price: 140000, category:"بار گرم", img:"https://picsum.photos/200" },
     { id:5, name:"لته ماکیاتو (فندق, کارامل ,وانیل ,آیریش, شکلات)", price: 155000, category:"بار گرم", img:"https://picsum.photos/200" },
-    { id:6, name:"ماچا لته", price: 160000, category:"بار گرم", img:"https://picsum.photos/200" },
-    { id:7, name:"قهوه ترک", price: 90000, category:"بار گرم", img:"https://picsum.photos/200" },
-    { id:8, name:"قهوه یونانی", price: 95000, category:"بار گرم", img:"https://picsum.photos/200" },
-    { id:9, name:"هات چاکلت (ساده, فندق)", price: 145000, category:"بار گرم", img:"https://picsum.photos/200" },
-    { id:10, name:"وایت چاکلت", price: 145000, category:"بار گرم", img:"https://picsum.photos/200" },
-    { id:11, name:"ماسالا", price: 135000, category:"بار گرم", img:"https://picsum.photos/200" },
-    { id:12, name:"شیر نسکافه", price: 120000, category:"بار گرم", img:"https://picsum.photos/200" },
-
-    // باقی آیتم‌ها
+    // باقی آیتم‌ها...
   ];
 
   const gridEl = document.getElementById('grid');
@@ -236,6 +240,7 @@
   const updatedEl = document.getElementById('updated');
   const printBtn = document.getElementById('printBtn');
   const toTopBtn = document.getElementById('toTop');
+  const logoEl = document.getElementById('logo');
 
   // دسته‌بندی‌ها
   const categories = Array.from(new Set(MENU_ITEMS.map(i => i.category))).sort();
@@ -272,10 +277,7 @@
       const price = document.createElement('div');
       price.className = 'price';
       price.textContent = formatPrice(i.price);
-      const cat = document.createElement('div');
-      cat.className = 'cat';
-      cat.textContent = i.category;
-      row.append(price, cat);
+      row.append(price);
       block.append(title, row);
       card.append(img, block);
       gridEl.appendChild(card);
@@ -299,7 +301,11 @@
   }
 
   searchEl.addEventListener('input', applyFilter);
-  catEl.addEventListener('change', applyFilter);
+  catEl.addEventListener('change', () => {
+    logoEl.style.display = 'none'; // Hide logo when category is selected
+    gridEl.style.display = 'grid'; // Show products
+    applyFilter();
+  });
   printBtn.addEventListener('click', () => window.print());
   toTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
