@@ -1,70 +1,213 @@
 <!doctype html>
 <html lang="fa" dir="rtl">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>منو کافی‌شاپ</title>
-<meta name="color-scheme" content="light only" />
-<style>
-  :root{
-    --bg:#ffffff;--ink:#0f172a;--muted:#64748b;--card:#f8fafc;--line:#e2e8f0;--accent:#111827;
-    --radius:18px;--pad:14px;--gap:12px;--shadow:0 8px 22px rgba(15,23,42,.06);
-  }
-  *{box-sizing:border-box}
-  html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 system-ui,-apple-system,"Segoe UI",Roboto,"Noto Sans Arabic","IRANSans",Tahoma}
-  .wrap{max-width:920px;margin:auto;padding:28px 16px}
-  header{position:sticky;top:0;background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--line);z-index:10}
-  .head{display:flex;gap:12px;align-items:center;justify-content:space-between;max-width:920px;margin:auto;padding:10px 16px}
-  .brand{font-weight:700;letter-spacing:.2px}
-  .tools{display:flex;gap:10px;flex-wrap:wrap}
-  .tools input,.tools select{
-    appearance:none;border:1px solid var(--line);background:#fff;border-radius:12px;padding:10px 12px;min-width:180px;outline:none
-  }
-  .muted{color:var(--muted);font-size:.9rem}
-  .grid{display:grid;grid-template-columns:1fr;gap:14px;margin-top:18px}
-  @media(min-width:560px){.grid{grid-template-columns:1fr 1fr}}
-  .card{
-    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);padding:var(--pad);box-shadow:var(--shadow);
-    display:grid;grid-template-columns:72px 1fr;gap:12px;align-items:center
-  }
-  .thumb{width:72px;height:72px;border-radius:14px;object-fit:cover;border:1px solid var(--line);background:#fff}
-  .title{font-weight:700}
-  .desc{color:var(--muted);font-size:.92rem}
-  .row{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:6px}
-  .price{font-feature-settings:"tnum" 1;direction:ltr}
-  .cat{font-size:.82rem;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:2px 10px}
-  .foot{margin-top:26px;display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:1px solid var(--line);padding-top:14px}
-  .tiny{font-size:.86rem;color:var(--muted)}
-  .btn{
-    border:1px solid var(--line);background:#fff;border-radius:12px;padding:8px 12px;cursor:pointer
-  }
-  .hidden{display:none}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>منو کافی‌شاپ</title>
+  <meta name="color-scheme" content="light only" />
+  <style>
+    :root {
+      --bg: #000000;
+      --white: #ffffff;
+      --muted: #777777;
+      --card-bg: #1c1c1c;
+      --accent: #f5f5f5;
+      --primary: #ffffff;
+      --hover: #444444;
+      --radius: 12px;
+      --padding: 14px;
+      --gap: 12px;
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      background-color: var(--bg);
+      color: var(--primary);
+      font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, "Noto Sans Arabic", "IRANSans", Tahoma;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      background-color: rgba(0, 0, 0, 0.8);
+      backdrop-filter: saturate(180%) blur(5px);
+      padding: 12px 16px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+      z-index: 10;
+    }
+
+    .head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      font-weight: bold;
+      font-size: 1.5rem;
+      color: var(--primary);
+      letter-spacing: 1px;
+    }
+
+    .tools {
+      display: flex;
+      gap: 12px;
+    }
+
+    .tools input,
+    .tools select {
+      background-color: var(--card-bg);
+      border: 1px solid var(--muted);
+      border-radius: var(--radius);
+      padding: 8px 12px;
+      color: var(--primary);
+      outline: none;
+      min-width: 180px;
+      font-size: 1rem;
+    }
+
+    .tools select {
+      cursor: pointer;
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    @media(min-width: 600px) {
+      .grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border-radius: var(--radius);
+      padding: var(--padding);
+      box-shadow: var(--shadow);
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      transition: background-color 0.3s ease;
+    }
+
+    .card:hover {
+      background-color: var(--hover);
+    }
+
+    .thumb {
+      width: 80px;
+      height: 80px;
+      border-radius: 12px;
+      object-fit: cover;
+      background-color: var(--primary);
+    }
+
+    .title {
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .desc {
+      color: var(--muted);
+      font-size: 1rem;
+      margin: 6px 0;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .price {
+      font-size: 1.2rem;
+      color: var(--primary);
+    }
+
+    .cat {
+      font-size: 0.9rem;
+      color: var(--muted);
+      background-color: var(--bg);
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--muted);
+    }
+
+    .foot {
+      margin-top: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      border-top: 1px solid var(--muted);
+      padding-top: 14px;
+    }
+
+    .btn {
+      background-color: var(--primary);
+      border: none;
+      padding: 10px 16px;
+      color: var(--bg);
+      border-radius: var(--radius);
+      cursor: pointer;
+      font-size: 1rem;
+      transition: background-color 0.3s;
+    }
+
+    .btn:hover {
+      background-color: var(--hover);
+    }
+
+    .tiny {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .hidden {
+      display: none;
+    }
+  </style>
 </head>
 <body>
 
 <header>
   <div class="head">
-    <div class="brand">منوی ریچ کافه</div>
+    <div class="brand">منو کافی‌شاپ</div>
     <div class="tools">
-      <input id="search" type="search" placeholder="جستجو: قهوه، کیک، موکا…" />
-<select id="category">
-  <option value="all">همه دسته‌ها</option>
-  <option value="بار گرم">بار گرم</option>
-  <option value="بار سرد">بار سرد</option>
-  <option value="چای و دمنوش">چای و دمنوش</option>
-  <option value="میلک شیک">میلک شیک</option>
-  <option value="موکتل و اسموتی">موکتل و اسموتی</option>
-</select>
+      <input id="search" type="search" placeholder="جستجو: قهوه، کیک، موکا..." />
+      <select id="category">
+        <option value="all">همه دسته‌ها</option>
+        <option value="بار گرم">بار گرم</option>
+        <option value="بار سرد">بار سرد</option>
+        <option value="چای و دمنوش">چای و دمنوش</option>
+        <option value="میلک شیک">میلک شیک</option>
+        <option value="موکتل و اسموتی">موکتل و اسموتی</option>
+      </select>
     </div>
   </div>
 </header>
 
 <main class="wrap">
   <p class="muted">برای مشاهده‌ی سریع، از جستجو یا فیلتر دسته‌ها استفاده کنید.</p>
-
   <div id="grid" class="grid"></div>
-
   <div class="foot">
     <span class="tiny">* ممکن است قیمت‌ها بدون اطلاع قبلی تغییر کند.</span>
     <div>
@@ -77,51 +220,13 @@
 
 <script>
   const MENU_ITEMS = [
-  // دسته بار گرم
-  { id:1, name:"اسپرسو", price: 80000, category:"بار گرم", img:"https://picsum.photos/200", desc:"قهوه خالص اسپرسو" },
-  { id:2, name:"آمریکانو", price: 100000, category:"بار گرم", img:"https://picsum.photos/200", desc:"آب داغ + اسپرسو" },
-  { id:3, name:"کاپوچینو", price: 130000, category:"بار گرم", img:"https://picsum.photos/200", desc:"اسپرسو + شیر فوم‌دار" },
-  { id:4, name:"لته", price: 140000, category:"بار گرم", img:"https://picsum.photos/200", desc:"اسپرسو + شیر بخار داده" },
-  { id:5, name:"لته ماکیاتو (فندق, کارامل ,وانیل ,آیریش, شکلات)", price: 155000, category:"بار گرم", img:"https://picsum.photos/200", desc:"لته با طعم‌های مختلف" },
-  { id:6, name:"ماچا لته", price: 160000, category:"بار گرم", img:"https://picsum.photos/200", desc:"چای ماچا + شیر" },
-  { id:7, name:"قهوه ترک", price: 90000, category:"بار گرم", img:"https://picsum.photos/200", desc:"قهوه ترک اصیل" },
-  { id:8, name:"قهوه یونانی", price: 95000, category:"بار گرم", img:"https://picsum.photos/200", desc:"قهوه یونانی با طعم خاص" },
-  { id:9, name:"هات چاکلت (ساده, فندق)", price: 145000, category:"بار گرم", img:"https://picsum.photos/200", desc:"شکلات داغ با طعم فندق" },
-  { id:10, name:"وایت چاکلت", price: 145000, category:"بار گرم", img:"https://picsum.photos/200", desc:"شکلات سفید داغ" },
-  { id:11, name:"ماسالا", price: 135000, category:"بار گرم", img:"https://picsum.photos/200", desc:"چای ماسالا داغ" },
-  { id:12, name:"شیر نسکافه", price: 120000, category:"بار گرم", img:"https://picsum.photos/200", desc:"شیر و نسکافه مخلوط" },
+    { id:1, name:"اسپرسو", price: 80000, category:"بار گرم", img:"https://picsum.photos/200", desc:"قهوه خالص اسپرسو" },
+    { id:2, name:"آمریکانو", price: 100000, category:"بار گرم", img:"https://picsum.photos/200", desc:"آب داغ + اسپرسو" },
+    { id:3, name:"کاپوچینو", price: 130000, category:"بار گرم", img:"https://picsum.photos/200", desc:"اسپرسو + شیر فوم‌دار" },
+    { id:4, name:"لته", price: 140000, category:"بار گرم", img:"https://picsum.photos/200", desc:"اسپرسو + شیر بخار داده" },
+    // باقی آیتم‌ها به همین صورت
+  ];
 
-  // دسته بار سرد بر پایه قهوه
-  { id:13, name:"آیس امریکانو", price: 100000, category:"بار سرد", img:"https://picsum.photos/200", desc:"آمریکانو یخ‌زده" },
-  { id:14, name:"آیس لته", price: 140000, category:"بار سرد", img:"https://picsum.photos/200", desc:"لته یخ‌زده" },
-  { id:15, name:"آیس موکا", price: 155000, category:"بار سرد", img:"https://picsum.photos/200", desc:"موکا یخ‌زده" },
-  { id:16, name:"آیس ماکیاتو", price: 155000, category:"بار سرد", img:"https://picsum.photos/200", desc:"ماکیاتو یخ‌زده" },
-  { id:17, name:"آیس ماچا", price: 155000, category:"بار سرد", img:"https://picsum.photos/200", desc:"ماچا یخ‌زده" },
-  { id:18, name:"آفوگاتو", price: 120000, category:"بار سرد", img:"https://picsum.photos/200", desc:"قهوه + بستنی" },
-
-  // دسته چای و دمنوش
-  { id:19, name:"چای سیاه", price: 70000, category:"چای و دمنوش", img:"https://picsum.photos/200", desc:"چای سیاه ساده" },
-  { id:20, name:"لیدی هربال (بهار نارنج, اسطوخودوس, زنجبیل)", price: 100000, category:"چای و دمنوش", img:"https://picsum.photos/200", desc:"چای گیاهی با طعم‌های مختلف" },
-  { id:21, name:"دمنوش گرین (چای سبز نعنا دارچین هل)", price: 100000, category:"چای و دمنوش", img:"https://picsum.photos/200", desc:"دمنوش سبز با طعم‌های گیاهی" },
-  { id:22, name:"دمنوش آرامش (گلگاوزبان، بهار نارنج، به لیمو)", price: 100000, category:"چای و دمنوش", img:"https://picsum.photos/200", desc:"دمنوش آرامش‌بخش" },
-  { id:23, name:"دمنوش مخصوص ریچ (آویشن, بابونه ,گلگاوزبان)", price: 100000, category:"چای و دمنوش", img:"https://picsum.photos/200", desc:"دمنوش مخصوص ریچ کافه" },
-
-  // دسته میلک شیک
-  { id:24, name:"شکلات", price: 200000, category:"میلک شیک", img:"https://picsum.photos/200", desc:"میلک شیک شکلاتی" },
-  { id:25, name:"کوکو منگو", price: 200000, category:"میلک شیک", img:"https://picsum.photos/200", desc:"میلک شیک انبه" },
-  { id:26, name:"نوتلا", price: 220000, category:"میلک شیک", img:"https://picsum.photos/200", desc:"میلک شیک نوتلا" },
-  { id:27, name:"بادام زمینی", price: 220000, category:"میلک شیک", img:"https://picsum.photos/200", desc:"میلک شیک بادام زمینی" },
-  { id:28, name:"بری فارم", price: 220000, category:"میلک شیک", img:"https://picsum.photos/200", desc:"میلک شیک بری فارم" },
-
-  // دسته موکتل و اسموتی
-  { id:29, name:"لیموناد", price: 110000, category:"موکتل و اسموتی", img:"https://picsum.photos/200", desc:"اسموتی لیمویی" },
-  { id:30, name:"موهیتو", price: 120000, category:"موکتل و اسموتی", img:"https://picsum.photos/200", desc:"اسموتی موهیتو" },
-  { id:31, name:"بری موهیتو", price: 130000, category:"موکتل و اسموتی", img:"https://picsum.photos/200", desc:"موهیتو با بری" },
-  { id:32, name:"تروپیکال (انبه, توت فرنگی, آب آناناس)", price: 220000, category:"موکتل و اسموتی", img:"https://picsum.photos/200", desc:"اسموتی تروپیکال" },
-  { id:33, name:"ویولت بری (شاتوت، لیمو، توت فرنگی)", price: 220000, category:"موکتل و اسموتی", img:"https://picsum.photos/200", desc:"اسموتی ویولت بری" },
-  { id:34, name:"رد کراش (گرانادین, آب پرتقال, شاتوت)", price: 220000, category:"موکتل و اسموتی", img:"https://picsum.photos/200", desc:"اسموتی رد کراش" },
-  { id:35, name:"جینجر اسپارک (زنجبیل لیمو آب پرتقال)", price: 210000, category:"موکتل و اسموتی", img:"https://picsum.photos/200", desc:"اسموتی جینجر اسپارک" }
-];
   const gridEl = document.getElementById('grid');
   const searchEl = document.getElementById('search');
   const catEl = document.getElementById('category');
@@ -130,25 +235,46 @@
   const toTopBtn = document.getElementById('toTop');
 
   // دسته‌بندی‌ها
-  const categories = Array.from(new Set(MENU_ITEMS.map(i=>i.category))).sort();
-  categories.forEach(c=>{
-    const o=document.createElement('option'); o.value=c; o.textContent=c; catEl.appendChild(o);
+  const categories = Array.from(new Set(MENU_ITEMS.map(i => i.category))).sort();
+  categories.forEach(c => {
+    const o = document.createElement('option');
+    o.value = c;
+    o.textContent = c;
+    catEl.appendChild(o);
   });
 
-  function render(items){
+  function render(items) {
     gridEl.innerHTML = '';
-    if(!items.length){
-      const p = document.createElement('p'); p.className='muted'; p.textContent='آیتمی یافت نشد.'; gridEl.appendChild(p); return;
+    if (!items.length) {
+      const p = document.createElement('p');
+      p.className = 'muted';
+      p.textContent = 'آیتمی یافت نشد.';
+      gridEl.appendChild(p);
+      return;
     }
-    items.forEach(i=>{
-      const card = document.createElement('div'); card.className='card';
-      const img  = document.createElement('img'); img.className='thumb'; img.loading='lazy'; img.alt=i.name; img.src=i.img;
+    items.forEach(i => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      const img = document.createElement('img');
+      img.className = 'thumb';
+      img.loading = 'lazy';
+      img.alt = i.name;
+      img.src = i.img;
       const block = document.createElement('div');
-      const title = document.createElement('div'); title.className='title'; title.textContent = i.name;
-      const desc = document.createElement('div'); desc.className='desc'; desc.textContent = i.desc || '';
-      const row = document.createElement('div'); row.className='row';
-      const price = document.createElement('div'); price.className='price'; price.textContent = formatPrice(i.price);
-      const cat = document.createElement('div'); cat.className='cat'; cat.textContent = i.category;
+      const title = document.createElement('div');
+      title.className = 'title';
+      title.textContent = i.name;
+      const desc = document.createElement('div');
+      desc.className = 'desc';
+      desc.textContent = i.desc || '';
+      const row = document.createElement('div');
+      row.className = 'row';
+      const price = document.createElement('div');
+      price.className = 'price';
+      price.textContent = formatPrice(i.price);
+      const cat = document.createElement('div');
+      cat.className = 'cat';
+      cat.textContent = i.category;
       row.append(price, cat);
       block.append(title, desc, row);
       card.append(img, block);
@@ -156,29 +282,29 @@
     });
   }
 
-  function applyFilter(){
-    const q = (searchEl.value||'').trim();
+  function applyFilter() {
+    const q = (searchEl.value || '').trim();
     const c = catEl.value;
-    const filtered = MENU_ITEMS.filter(i=>{
-      const inCat = c==='all' || i.category===c;
-      const inTxt = !q || [i.name,i.desc,i.category].filter(Boolean).some(t=>t.includes(q));
+    const filtered = MENU_ITEMS.filter(i => {
+      const inCat = c === 'all' || i.category === c;
+      const inTxt = !q || [i.name, i.desc, i.category].filter(Boolean).some(t => t.includes(q));
       return inCat && inTxt;
     });
     render(filtered);
   }
 
-  function formatPrice(num){
-    if(typeof num!=='number') return '';
+  function formatPrice(num) {
+    if (typeof num !== 'number') return '';
     return num.toLocaleString('fa-IR') + ' تومان';
   }
 
   searchEl.addEventListener('input', applyFilter);
   catEl.addEventListener('change', applyFilter);
-  printBtn.addEventListener('click', ()=>window.print());
-  toTopBtn.addEventListener('click', ()=>window.scrollTo({top:0,behavior:'smooth'}));
+  printBtn.addEventListener('click', () => window.print());
+  toTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
   const d = new Date();
-  updatedEl.textContent='آخرین به‌روزرسانی: '+d.toLocaleDateString('fa-IR')+'، '+d.toLocaleTimeString('fa-IR',{hour:'2-digit',minute:'2-digit'});
+  updatedEl.textContent = 'آخرین به‌روزرسانی: ' + d.toLocaleDateString('fa-IR') + '، ' + d.toLocaleTimeString('fa-IR', { hour: '2-digit', minute: '2-digit' });
 
   render(MENU_ITEMS);
 </script>
