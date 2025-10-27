@@ -220,11 +220,50 @@
 
 <script>
   const MENU_ITEMS = [
-    { id:1, name:"اسپرسو", price: 80000, category:"بار گرم", img:"https://picsum.photos/200", desc:"قهوه خالص اسپرسو" },
-    { id:2, name:"آمریکانو", price: 100000, category:"بار گرم", img:"https://picsum.photos/200", desc:"آب داغ + اسپرسو" },
-    { id:3, name:"کاپوچینو", price: 130000, category:"بار گرم", img:"https://picsum.photos/200", desc:"اسپرسو + شیر فوم‌دار" },
-    { id:4, name:"لته", price: 140000, category:"بار گرم", img:"https://picsum.photos/200", desc:"اسپرسو + شیر بخار داده" },
-    // باقی آیتم‌ها به همین صورت
+  // دسته بار گرم
+  { id:1, name:"اسپرسو", price: 80000, category:"بار گرم", img:"https://picsum.photos/200" },
+  { id:2, name:"آمریکانو", price: 100000, category:"بار گرم", img:"https://picsum.photos/200" },
+  { id:3, name:"کاپوچینو", price: 130000, category:"بار گرم", img:"https://picsum.photos/200" },
+  { id:4, name:"لته", price: 140000, category:"بار گرم", img:"https://picsum.photos/200" },
+  { id:5, name:"لته ماکیاتو (فندق, کارامل ,وانیل ,آیریش, شکلات)", price: 155000, category:"بار گرم", img:"https://picsum.photos/200" },
+  { id:6, name:"ماچا لته", price: 160000, category:"بار گرم", img:"https://picsum.photos/200" },
+  { id:7, name:"قهوه ترک", price: 90000, category:"بار گرم", img:"https://picsum.photos/200" },
+  { id:8, name:"قهوه یونانی", price: 95000, category:"بار گرم", img:"https://picsum.photos/200" },
+  { id:9, name:"هات چاکلت (ساده, فندق)", price: 145000, category:"بار گرم", img:"https://picsum.photos/200" },
+  { id:10, name:"وایت چاکلت", price: 145000, category:"بار گرم", img:"https://picsum.photos/200" },
+  { id:11, name:"ماسالا", price: 135000, category:"بار گرم", img:"https://picsum.photos/200" },
+  { id:12, name:"شیر نسکافه", price: 120000, category:"بار گرم", img:"https://picsum.photos/200" },
+
+  // دسته بار سرد بر پایه قهوه
+  { id:13, name:"آیس امریکانو", price: 100000, category:"بار سرد", img:"https://picsum.photos/200" },
+  { id:14, name:"آیس لته", price: 140000, category:"بار سرد", img:"https://picsum.photos/200" },
+  { id:15, name:"آیس موکا", price: 155000, category:"بار سرد", img:"https://picsum.photos/200" },
+  { id:16, name:"آیس ماکیاتو", price: 155000, category:"بار سرد", img:"https://picsum.photos/200" },
+  { id:17, name:"آیس ماچا", price: 155000, category:"بار سرد", img:"https://picsum.photos/200" },
+  { id:18, name:"آفوگاتو", price: 120000, category:"بار سرد", img:"https://picsum.photos/200" },
+
+  // دسته چای و دمنوش
+  { id:19, name:"چای سیاه", price: 70000, category:"چای و دمنوش", img:"https://picsum.photos/200" },
+  { id:20, name:"لیدی هربال (بهار نارنج, اسطوخودوس, زنجبیل)", price: 100000, category:"چای و دمنوش", img:"https://picsum.photos/200" },
+  { id:21, name:"دمنوش گرین (چای سبز نعنا دارچین هل)", price: 100000, category:"چای و دمنوش", img:"https://picsum.photos/200" },
+  { id:22, name:"دمنوش آرامش (گلگاوزبان، بهار نارنج، به لیمو)", price: 100000, category:"چای و دمنوش", img:"https://picsum.photos/200" },
+  { id:23, name:"دمنوش مخصوص ریچ (آویشن, بابونه ,گلگاوزبان)", price: 100000, category:"چای و دمنوش", img:"https://picsum.photos/200" },
+
+  // دسته میلک شیک
+  { id:24, name:"شکلات", price: 200000, category:"میلک شیک", img:"https://picsum.photos/200" },
+  { id:25, name:"کوکو منگو", price: 200000, category:"میلک شیک", img:"https://picsum.photos/200" },
+  { id:26, name:"نوتلا", price: 220000, category:"میلک شیک", img:"https://picsum.photos/200" },
+  { id:27, name:"بادام زمینی", price: 220000, category:"میلک شیک", img:"https://picsum.photos/200" },
+  { id:28, name:"بری فارم", price: 220000, category:"میلک شیک", img:"https://picsum.photos/200" },
+
+  // دسته موکتل و اسموتی
+  { id:29, name:"لیموناد", price: 110000, category:"موکتل و اسموتی", img:"https://picsum.photos/200" },
+  { id:30, name:"موهیتو", price: 120000, category:"موکتل و اسموتی", img:"https://picsum.photos/200" },
+  { id:31, name:"بری موهیتو", price: 130000, category:"موکتل و اسموتی", img:"https://picsum.photos/200" },
+  { id:32, name:"تروپیکال (انبه, توت فرنگی, آب آناناس)", price: 220000, category:"موکتل و اسموتی", img:"https://picsum.photos/200" },
+  { id:33, name:"ویولت بری (شاتوت، لیمو، توت فرنگی)", price: 220000, category:"موکتل و اسموتی", img:"https://picsum.photos/200" },
+  { id:34, name:"رد کراش (گرانادین, آب پرتقال, شاتوت)", price: 220000, category:"موکتل و اسموتی", img:"https://picsum.photos/200" },
+  { id:35, name:"جینجر اسپارک (زنجبیل لیمو آب پرتقال)", price: 210000, category:"موکتل و اسموتی", img:"https://picsum.photos/200" }
   ];
 
   const gridEl = document.getElementById('grid');
